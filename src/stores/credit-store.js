@@ -19,6 +19,7 @@ export const useCreditStore = defineStore("credit", {
     },
 
     clearCredit() {
+      Echo.leave(`credits.${this.credit.id}`);
       this.credit = null;
       this.reference = null;
     },

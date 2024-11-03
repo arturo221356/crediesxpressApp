@@ -69,8 +69,4 @@ onMounted(() => {
         creditStore.fetchCredit();
     });
 });
-
-onBeforeUnmount(() => {
-    // Echo.leave(`private-credit.${creditStore.credit.id}`);
-});
 </script>
