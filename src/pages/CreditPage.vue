@@ -65,12 +65,12 @@ const IsBlacklistedChip = defineAsyncComponent(() =>
 );
 
 onMounted(() => {
-    Echo.private(`credit.${creditStore.credit.id}`).listen("CreditUpdated", (e) => {
+    Echo.channel(`credits.${creditStore.credit.id}`).listen("CreditUpdated", (e) => {
         creditStore.fetchCredit();
     });
 });
 
 onBeforeUnmount(() => {
-    Echo.leave(`private-credit.${creditStore.credit.id}`);
+    // Echo.leave(`private-credit.${creditStore.credit.id}`);
 });
 </script>
