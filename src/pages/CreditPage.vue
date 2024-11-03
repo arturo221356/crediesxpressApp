@@ -20,6 +20,10 @@
                     </q-item-label>
                 </q-card-section>
                 <q-card-section>
+                    <q-item-label class="text-body1" v-if="!creditStore.credit.finished_at">
+                        Fecha limite de pago :
+                        {{ moment(creditStore.credit.due_at).format(" DD/MM/YYYY") }}
+                    </q-item-label>
                     <q-item-label class="text-body1">
                         Referencia: {{ creditStore.credit.reference }}
                     </q-item-label>
@@ -52,6 +56,9 @@ import { useCreditStore } from "stores/credit-store";
 import ProgressBar from "components/ProgressBar.vue";
 import PaymentsList from "components/PaymentsList.vue";
 import { defineAsyncComponent, onMounted, onBeforeUnmount } from "vue";
+import moment from "moment";
+
+moment.locale("es");
 
 const creditStore = useCreditStore();
 
