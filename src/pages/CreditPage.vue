@@ -1,6 +1,6 @@
 <template>
     <q-page>
-        <q-pull-to-refresh @refresh="creditStore.fetchCredit()">
+        <q-pull-to-refresh @refresh="refresh">
             <div style="max-width: 800px" class="col">
                 <div>
                     <div class="q-ma-lg">
@@ -78,4 +78,10 @@ onMounted(() => {
         creditStore.fetchCredit();
     });
 });
+
+const refresh = async (done) => {
+    await creditStore.fetchCredit();
+
+    done();
+};
 </script>
