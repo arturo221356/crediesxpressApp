@@ -1,6 +1,9 @@
 <template>
   <CreditPage v-if="creditStore.credit" />
+
   <NoReferencePage v-else />
+
+  {{ route.query.referencia }}
 </template>
 
 <script setup>
@@ -27,8 +30,8 @@ defineProps({
 });
 
 onMounted(() => {
-  if (route?.params?.reference) {
-    creditStore.reference = route.params.reference;
+  if (route?.params?.reference || route.query?.referencia) {
+    creditStore.reference = route.query?.referencia || route.params.reference;
 
     creditStore.fetchCredit();
   }
