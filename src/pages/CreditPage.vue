@@ -55,6 +55,18 @@
           </q-card-section>
         </div>
       </div>
+
+      <div class="q-my-xl">
+        <q-toolbar class="bg-white text-primary">
+          <q-btn
+            flat
+            dense
+            icon="smartphone"
+            label="garantia"
+            :to="{ name: 'garantia' }"
+          />
+        </q-toolbar>
+      </div>
     </q-pull-to-refresh>
   </q-page>
 </template>

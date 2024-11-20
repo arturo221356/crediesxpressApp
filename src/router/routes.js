@@ -6,11 +6,19 @@ const routes = [
       {
         path: "",
         component: () => import("pages/IndexPage.vue"),
+        name: "home",
       },
       {
         path: "credito/:reference",
         component: () => import("pages/IndexPage.vue"),
         props: true,
+      },
+
+      {
+        path: "garantia",
+        component: () => import("pages/GarantiaPage.vue"),
+        props: true,
+        name: "garantia",
       },
     ],
   },
