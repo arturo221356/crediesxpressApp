@@ -3,7 +3,7 @@
 
   <NoReferencePage v-else />
 
-  {{ route.query.referencia }}
+  {{ route }}
 </template>
 
 <script setup>
