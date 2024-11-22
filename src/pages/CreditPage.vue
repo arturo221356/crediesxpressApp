@@ -1,7 +1,10 @@
 <template>
   <q-page>
     <q-pull-to-refresh @refresh="refresh">
-      <div style="max-width: 800px" class="col">
+      <div
+        style="max-width: 800px"
+        class="col"
+      >
         <div>
           <div class="q-ma-lg">
             <q-img
@@ -21,13 +24,15 @@
           </q-card-section>
 
           <q-card-section>
-            <q-item-label class="text-h5"
-              >Hola, {{ creditStore.credit.client.name }}
+            <q-item-label class="text-h5">Hola, {{ creditStore.credit.client.name }}
               {{ creditStore.credit.client.middlename }}
             </q-item-label>
           </q-card-section>
           <q-card-section>
-            <q-item-label class="text-body1" v-if="!creditStore.credit.finished_at">
+            <q-item-label
+              class="text-body1"
+              v-if="!creditStore.credit.finished_at"
+            >
               Fecha limite de pago :
               {{ moment(creditStore.credit.due_at).format("DD-MM-YY") }}
             </q-item-label>
@@ -41,9 +46,9 @@
             <q-item-label class="text-body1">
               Parcialidad: ${{ creditStore.credit.installment_amount }}
             </q-item-label>
-            <q-item-label>
+            <!-- <q-item-label>
               Por liquidar: ${{ creditStore.credit.settlement_amount }}
-            </q-item-label>
+            </q-item-label> -->
           </q-card-section>
 
           <q-card-section>
@@ -72,34 +77,34 @@
 </template>
 
 <script setup>
-import { useCreditStore } from "stores/credit-store";
-import ProgressBar from "components/ProgressBar.vue";
-import PaymentsList from "components/PaymentsList.vue";
-import { defineAsyncComponent, onMounted, onBeforeUnmount } from "vue";
-import moment from "moment";
+  import { useCreditStore } from "stores/credit-store";
+  import ProgressBar from "components/ProgressBar.vue";
+  import PaymentsList from "components/PaymentsList.vue";
+  import { defineAsyncComponent, onMounted, onBeforeUnmount } from "vue";
+  import moment from "moment";
 
-const creditStore = useCreditStore();
+  const creditStore = useCreditStore();
 
-const LastConnectedChip = defineAsyncComponent(() =>
-  import("components/LastConnectedChip.vue")
-);
-const IsLateChip = defineAsyncComponent(() => import("components/IsLateChip.vue"));
-const IsSettledChip = defineAsyncComponent(() => import("components/IsSettledChip.vue"));
-const IsBlacklistedChip = defineAsyncComponent(() =>
-  import("components/IsBlacklistedChip.vue")
-);
+  const LastConnectedChip = defineAsyncComponent(() =>
+    import("components/LastConnectedChip.vue")
+  );
+  const IsLateChip = defineAsyncComponent(() => import("components/IsLateChip.vue"));
+  const IsSettledChip = defineAsyncComponent(() => import("components/IsSettledChip.vue"));
+  const IsBlacklistedChip = defineAsyncComponent(() =>
+    import("components/IsBlacklistedChip.vue")
+  );
 
-onMounted(() => {
-  creditStore.fetchCredit();
-
-  Echo.channel(`credits.${creditStore.credit.id}`).listen("CreditUpdated", (e) => {
+  onMounted(() => {
     creditStore.fetchCredit();
+
+    Echo.channel(`credits.${creditStore.credit.id}`).listen("CreditUpdated", (e) => {
+      creditStore.fetchCredit();
+    });
   });
-});
 
-const refresh = async (done) => {
-  await creditStore.fetchCredit();
+  const refresh = async (done) => {
+    await creditStore.fetchCredit();
 
-  done();
-};
+    done();
+  };
 </script>
