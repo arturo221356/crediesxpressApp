@@ -1,13 +1,18 @@
 <template>
   <q-page>
     <q-toolbar class="bg-primary text-white">
-      <q-btn flat dense icon="home" label="ir a inicio" :to="{ name: 'home' }" />
+      <q-btn
+        flat
+        dense
+        icon="home"
+        label="ir a inicio"
+        :to="{ name: 'home' }"
+      />
     </q-toolbar>
-    <q-card class="q-pa-md">
+
+    <q-card class="q-pa-md q-mt-lg">
       <q-card-section>
-        <div class="text-h6 text-center">
-          Documento de Garantía para Equipos Celulares
-        </div>
+        <div class="text-h6 text-center">Garantía para Equipos Celulares</div>
         <q-separator class="q-my-md" />
         <div>
           <p><strong>Nombre del vendedor:</strong> {{ proveedor }}</p>
@@ -34,22 +39,16 @@
         <div class="text-h6">Condiciones para la Aplicación de la Garantía</div>
         <q-list dense>
           <q-item>
-            <q-item-section
-              >El cliente debe presentar el comprobante de compra original junto con este
-              documento.</q-item-section
-            >
+            <q-item-section>El cliente debe presentar el comprobante de compra original junto con este
+              documento.</q-item-section>
           </q-item>
           <q-item>
-            <q-item-section
-              >El equipo debe ser entregado en su estado original, sin alteraciones
-              externas o internas no autorizadas.</q-item-section
-            >
+            <q-item-section>El equipo debe ser entregado en su estado original, sin alteraciones
+              externas o internas no autorizadas.</q-item-section>
           </q-item>
           <q-item>
-            <q-item-section
-              >El diagnóstico técnico será realizado únicamente en un centro de servicio
-              autorizado por el proveedor.</q-item-section
-            >
+            <q-item-section>El diagnóstico técnico será realizado únicamente en un centro de servicio
+              autorizado por el proveedor.</q-item-section>
           </q-item>
         </q-list>
       </q-card-section>
@@ -152,28 +151,28 @@
 </template>
 
 <script>
-import { useCreditStore } from "stores/credit-store";
-import moment from "moment";
+  import { useCreditStore } from "stores/credit-store";
+  import moment from "moment";
 
-const creditStore = useCreditStore();
+  const creditStore = useCreditStore();
 
-export default {
-  name: "GarantiaEquiposCelulares",
-  data() {
-    return {
-      proveedor: creditStore.credit?.brand?.name || "Vendedor",
-      fechaCompra:
-        moment(creditStore.credit?.created_at).format("DD-MM-YY") || "01-01-1990",
-      numeroSerie: creditStore.credit?.device?.imei || "999999999999999",
-      duracionGarantia: "6 meses / 1 año depende proveedor",
-      creditStore,
-    };
-  },
-};
+  export default {
+    name: "GarantiaEquiposCelulares",
+    data() {
+      return {
+        proveedor: creditStore.credit?.brand?.name || "Vendedor",
+        fechaCompra:
+          moment(creditStore.credit?.created_at).format("DD-MM-YY") || "01-01-1990",
+        numeroSerie: creditStore.credit?.device?.imei || "999999999999999",
+        duracionGarantia: "6 meses / 1 año depende proveedor",
+        creditStore,
+      };
+    },
+  };
 </script>
 
 <style scoped>
-.text-h6 {
-  font-weight: bold;
-}
+  .text-h6 {
+    font-weight: bold;
+  }
 </style>

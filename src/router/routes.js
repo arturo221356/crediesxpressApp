@@ -20,6 +20,13 @@ const routes = [
         props: true,
         name: "garantia",
       },
+
+      {
+        path: "terminos-condiciones",
+        component: () => import("pages/TermsConditionsPage.vue"),
+        props: true,
+        name: "terms",
+      },
     ],
   },
 

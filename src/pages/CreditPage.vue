@@ -62,13 +62,21 @@
       </div>
 
       <div class="q-my-xl">
-        <q-toolbar class="bg-white text-primary">
+        <q-toolbar class="bg-white text-primary q-gutter-md">
           <q-btn
             flat
             dense
             icon="smartphone"
             label="garantia"
             :to="{ name: 'garantia' }"
+          />
+
+          <q-btn
+            flat
+            dense
+            icon="handshake"
+            label="terminos y condiciones"
+            :to="{ name: 'terms' }"
           />
         </q-toolbar>
       </div>
